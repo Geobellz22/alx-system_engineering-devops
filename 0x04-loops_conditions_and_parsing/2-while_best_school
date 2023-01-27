@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Displays "Bet school" 10 times with while loop
+# This script is displaying "Best School" 10 times
 
-while ((i < 10))
+while  ((i < 10))
 do
-         echo "Best school"
+    echo "Best School"
     ((i++))
 done
