@@ -3,6 +3,6 @@
 
 while ((i < 10))
 do
-    echo "Best school"
+         echo "Best school"
     ((i++))
 done
