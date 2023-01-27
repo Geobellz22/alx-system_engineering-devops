@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Displays "Bet school" 10 times with while loop
 
-while ((i < 10))
+while ((i <= 9))
 do
     echo "Best school"
     ((i++))
