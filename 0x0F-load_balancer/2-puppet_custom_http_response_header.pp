@@ -1,10 +1,21 @@
 # Install a Nginx server end
 # create a custom HTTP header response with puppet
 
-exec { 'command':
-  command => 'apt-get -y update;
-  apt-get -y install nginx;
-  sudo sed -i "/listen 80 default_server;/ a add_header x-Served-By $HOSTNAME;" /etc/nginx/sites-available/default;
-  service nginx restart',
-  provider => shell,
+exec { 'apt-update:
+  command => '/usr/bin/apt-get update'
+}
+
+package { 'nginx':
+  ensure => 'installed',
+  name   =>  'nginx',
+}
+
+file_line { 'append a line in nginx config file':
+  path  =>  '/etc/nginx/nginx.conf',
+  line  =>  "\tadd_header X-Served-By ${hostname};",
+  after =>   'http {',
+}
+
+exec { 'sudo service nginx restart':
+  command => '/usr/bin/service nginx restart',
 }
