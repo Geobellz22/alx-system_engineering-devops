@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# check if an argument is provided
+if [ -z "$1" ]; then
+  echo "Please provide a user an arguent."
+  exit 1
+fi
+
+# Run the whoami command
+sudo -u "$1" whoami
