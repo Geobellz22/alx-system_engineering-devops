@@ -14,6 +14,6 @@ if __name__ == "__main__":
     todos = requests.get(url + "todos", params={"userId": user_id}).json()
 
     with open('{}.csv'.format(user.get("Id")), 'w', newline='') as csvfile:
-        data_writer = csv.writer(readfile, quoting=csv.QUOTE_ALL)
+        data_writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         completed_tasks = sum(1 for items in todos if item["completed"])
         data_writer.writerow([user_id, user.get("username"), completed_tasks])
