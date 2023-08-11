@@ -8,14 +8,12 @@ import sys
 
 if __name__ == "__main__":
     url = "https://jsonplaceholder.typicode.com/"
-    user = requests.get(url + "users/{}".format(sys.argv[1])).json()
+    user_id = sys.argv[1]
+
+    user = requests.get(url + "users/{}".format(user_id)).json()
     todos = requests.get(url + "todos", params={"userId": sys.argv[1]}).json()
 
-    with open('{}.csv'.format(user.get("Id")), 'w', newline='') as readfile:
+    with open('{}.csv'.format(user.get("Id")), 'w', newline='') as csvfile:
         data_writer = csv.writer(readfile, quoting=csv.QUOTE_ALL)
-        [data_writer.writerow(
-            [user.get("Id"),
-             user.get("username"),
-             item.get("completed"),
-             item.get("title")]
-            ) for item in todos]
+        completed_tasks = sum(1 for items in todos if item["completed"])
+        data_writer.writerow([user_id, user.get("username"), completed_tasks])
