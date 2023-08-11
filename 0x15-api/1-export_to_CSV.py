@@ -2,8 +2,8 @@
 """ Script that extend python script"""
 
 import csv
-import sys
 import requests
+import sys
 
 
 if __name__ == "__main__":
